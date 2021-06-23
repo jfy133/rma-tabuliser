@@ -7,12 +7,13 @@
 ## Description
 
 Bash script to generate count/taxon/OTU tables from RMA6 files (wrapper to
-MEGAN6 rma2info).
+[MEGAN6](https://software-ab.informatik.uni-tuebingen.de/download/megan6/welcome.html) rma2info).
+
 ## Requirements
 
 **Mandatory**
 
-  * MEGAN (>= v6.21.7)
+  * [MEGAN](https://software-ab.informatik.uni-tuebingen.de/download/megan6/welcome.html) (>= v6.21.7)
     *  ⚠️ contents of `tools/` must be in `$PATH`, 
     *  (bio)conda install recommended
   * awk
