@@ -1,5 +1,9 @@
 # rma-tabuliser
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5018140.svg)](https://doi.org/10.5281/zenodo.5018140) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/jfy133/rma-tabuliser) ![GitHub issues](https://img.shields.io/github/issues/jfy133/rma-tabuliser)
+
+
+
 ## Description
 
 Bash script to generate count/taxon/OTU tables from RMA6 files (wrapper to
