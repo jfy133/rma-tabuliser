@@ -170,7 +170,7 @@ while getopts ":d:c:t:r:uvshnkV" options; do         # Loop: Get the next option
     u)unassigned="-u";;
     k)keep=true;;
     v)version=true;;
-    V)verbose="-V";;
+    V)verbose="-v";;
     h)help=true;;
     :)                                    # If expected argument omitted:
       echo "Error: -${OPTARG} requires an argument."
