@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [#3](https://github.com/jfy133/rma-tabuliser/issues/3) Added option to print taxonomic paths in MEGAN format
+- [#3](https://github.com/jfy133/rma-tabuliser/issues/3) - Added option to print taxonomic paths in MEGAN format
 
 ### Changed
 
@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- [#1](https://github.com/jfy133/rma-tabuliser/issues/1) Fixed incorrect verbose flag for rma2info being used (thanks to report from @ivelsko)
+- [#1](https://github.com/jfy133/rma-tabuliser/issues/1) - Fixed incorrect verbose flag for rma2info being used (thanks to report from @ivelsko)
 
 ### Removed
 
@@ -43,7 +43,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - filtering to different Taxonomy levels, 
   - reporting either node ids or names,
   - summarising values to a node.
-
 
 ### Changed
 
