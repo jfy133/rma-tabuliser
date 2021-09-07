@@ -81,6 +81,8 @@ $ rma-tabuliser -h
         captials. Specify 'A' for no filtering (i.e. all ranks). Options are: A D K P C O F G S. Default A
 
       -s              Specify to summarise node counts, i.e. all
+      
+      -p              Specify to print paths as well as of names.
 
       -t [N_THREADS]
 
@@ -114,7 +116,7 @@ $ rma-tabuliser -h
 
   VERSION
 
-    0.0.1
+    0.1.0
 
 
 ```

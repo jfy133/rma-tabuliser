@@ -17,11 +17,6 @@
 # You should have received a copy of the GNU General Public License           
 # along with this program.  If not, see <https://www.gnu.org/licenses/>. 
 
-## TODO Make command verbose properly: i.e. make as a function and echo and 
-##      actually run with a single variable
-## TODO MEGAN -J for memory? <- doesn't work, requires editing the vmOptions 
-##      instead
-
 ## DEFAULTS ####################################################################
 
 script_name=$(basename $0)
@@ -31,16 +26,18 @@ class="Taxonomy"
 names=""
 rank="A"
 unassigned=""
+path=""
 verbose=""
 threads=1
 keep=false
-summ=false
+summ=""
 prog_version="0.0.1\n"
 
 ## FUNCTIONS ###################################################################
 
 usage() {                                 # Function: Print a help message.
-  printf "Usage: $script_name [ -d </path/to/rma6/dir/> ] [ -c <${class_list[*]}> ] -h -k -n [ -r ${taxonomy[*]} ] -s [ -t <NUM_THREADS> ] -u(assigned)  -v(erbose)  -V(ersion)\n" 1>&2 
+  printf "Usage: $script_name [ -d </path/to/rma6/dir/> ] [ -c <${class_list[*]}> ] -h -k -p -n [ -r ${taxonomy[*]} ] -s [ -t <NUM_THREADS> ] -u(assigned)  -v(erbose)  -V(ersion)" 1>&2 
+  # Will make output NEXT to rma6 file supplying -r will only export major ranks
 }
 
 exit_abnormal() {                         # Function: Exit with error.
@@ -95,7 +92,9 @@ help(){
         For Taxonomy class tables, specify which major taxonomic rank to filter from. Use first letter of the rank in 
         captials. Specify 'A' for no filtering (i.e. all ranks). Options are: ${taxonomy[*]}. Default $rank
 
-      -s              Specify to summarise node counts, i.e. all
+      -s              Specify to summarise node counts, i.e. all.
+
+      -p              Specify to print paths as well as of names.
 
       -t [N_THREADS]
       
@@ -146,7 +145,7 @@ export -f tax_filter select_columns
 
 ## ARGUMENTS ###################################################################
 
-while getopts ":d:c:t:r:uvshnkV" options; do         # Loop: Get the next option;
+while getopts ":d:c:t:r:upvshnkV" options; do         # Loop: Get the next option;
                                           # use silent error checking; options n
                                           # and t take arguments.
   case "${options}" in                    # 
@@ -168,6 +167,7 @@ while getopts ":d:c:t:r:uvshnkV" options; do         # Loop: Get the next option
       fi;; 
     u)unassigned="-u";;
     k)keep=true;;
+    p)path="-p";;
     v)version=true;;
     V)verbose="-v";;
     h)help=true;;
@@ -221,16 +221,21 @@ fi
 
 ## GENERATION ##################################################################
 
+if [[ $verbose ]]; then
+  echo "[rma2info] LOG: rma2info -i $i -c2c $class $names $summ $unassigned $path $verbose"
+fi
+
 if [[ $threads -gt 1 ]]; then
-  printf '%s\n' "${input[@]}"  | parallel -j $threads --plus "rma2info -i {} -c2c $class $names $summ $unassigned $verbose | cat <( echo -e '$header{/.}') - | grep -v '#' > $intermediate/{/.}_table.otu"
+  printf '%s\n' "${input[@]}"  | parallel -j $threads --plus "rma2info -i {} -c2c $class $names $summ $unassigned $path $verbose | cat <( echo -e '$header{/.}') - | grep -v '#' > $intermediate/{/.}_table.otu"
 else
   for i in "${input[@]}"; do
     out=$(basename $i)
-    rma2info -i $i -c2c $class $names $summ $unassigned $verbose | cat <( echo -e "$header$(basename ${i%%.rma6})" ) - | grep -v '#' > $intermediate/${out%%.rma6}_table.otu
+    rma2info -i $i -c2c $class $names $summ $unassigned $path $verbose | cat <( echo -e "$header$(basename ${i%%.rma6})" ) - | grep -v '#' > $intermediate/${out%%.rma6}_table.otu
   done
 fi
 
 ## CLEANING ####################################################################
+
 
 if [[ $threads -gt 1 ]]; then
   printf '%s\n' $intermediate/*_table.otu | parallel -j $threads --plus "(head -n 1 {} && tail -n +2 {} | sort $sort_col $sort_var) > $intermediate/{/.}_sorted.otu"
