@@ -15,10 +15,15 @@ Bash script to generate count/taxon/OTU tables from RMA6 files (wrapper to
   * ⚠️ contents of `tools/` must be in `$PATH`
   * (bio)conda install recommended
 * awk
+  * Tested on `GNU Awk 5.0.1` 
 * sed
+  * Tested on `sed (GNU sed) 4.7`
 * grep
+  * Tested on `grep (GNU grep) 3.4`
 * cat
+  * Tested on `cat (GNU coreutils) 8.30` 
 * sort
+  * Tested on `sort (GNU coreutils) 8.30` 
 
 ### Optional
 

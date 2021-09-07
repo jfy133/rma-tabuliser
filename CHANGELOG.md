@@ -10,6 +10,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [#3](https://github.com/jfy133/rma-tabuliser/issues/3) Added option to print taxonomic paths in MEGAN format
 
+### Changed
+
+### Removed
+
+## [0.0.3] - 2021-07-27
+
+### Added
+
+- Added versions of dependencies tool was tested against to README
+
+### Changed
+
+### Removed
+
 ## [0.0.2] - 2021-06-24
 
 ### Added
