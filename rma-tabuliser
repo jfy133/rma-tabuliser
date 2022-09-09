@@ -31,7 +31,7 @@ verbose=""
 threads=1
 keep=false
 summ=""
-prog_version="0.1.1\n"
+prog_version="0.2.0\n"
 
 ## FUNCTIONS ###################################################################
 
